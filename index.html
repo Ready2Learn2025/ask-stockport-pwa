@@ -144,37 +144,86 @@
             color:var(--dark-gray);
             line-height: 1.8;
         }
-        .icons-row{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-            gap:2.5rem;
-            justify-items:center;
-            margin-top:3rem;
+        /* --- Carousel --- */
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            display: flex;
+            align-items: center;
         }
-        .icon-card{
-            background:var(--white);
-            padding:2rem;
-            border-radius:12px;
-            box-shadow:0 4px 12px rgba(0,0,0,.05);
-            width:100%;
-            max-width:240px;
-            text-align:center;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        .carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 2rem;
+            padding: 2rem 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
-        .icon-card:hover{
-            transform: translateY(-5px);
-            box-shadow: 0 6px 16px rgba(0,0,0,.08);
+        .carousel-track::-webkit-scrollbar {
+            display: none;
         }
-        .icon-card svg{
-            height:70px;
-            margin-bottom:1.25rem;
+        .carousel-card {
+            flex: 0 0 280px;
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.05);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 1rem;
+        }
+        .carousel-card h3 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.2rem;
+            color: var(--teal);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .carousel-card p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+        .carousel-card svg{
+            height:60px;
+            margin-bottom:1rem;
             fill:var(--teal);
             transition: fill 0.3s ease;
         }
-        .icon-card p{
-            margin:0;
-            font-size: 1.1rem;
+        .carousel-btn {
+            background: var(--teal);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 1;
         }
+        .carousel-btn:hover {
+            background: #16725D;
+        }
+        @media (max-width: 700px) {
+            .carousel-card {
+                flex: 0 0 80vw;
+                padding: 1.2rem 0.8rem;
+            }
+            .carousel-container {
+                max-width: 100vw;
+            }
+            .carousel-btn {
+                width: 2rem;
+                height: 2rem;
+                font-size: 1.2rem;
+            }
+        }
+        /* --- Contact etc (unchanged) --- */
         .contact-section{
             background:var(--white);
             padding:5rem 2rem;
@@ -350,27 +399,42 @@
 
         <section id="services" class="section">
             <h2>Our Services</h2>
-            <div class="icons-row">
-                <div class="icon-card">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 22H5v-2h1v-7.586l-1.707-1.707A.997.997 0 014 10V5a1 1 0 011-1h1V3a1 1 0 112 0v1h8V3a1 1 0 112 0v1h1a1 1 0 011 1v5a.997.997 0 01-.293.707L18 12.414V20h1v2z"/></svg>
-                    <p>AI Strategy &amp; Roadmapping</p>
+            <p>We help you unlock AI's potential with clarity, integrity, and practical guidance tailored to your unique journey.</p>
+            <div class="carousel-container">
+                <button class="carousel-btn left" aria-label="Scroll left">&#8592;</button>
+                <div class="carousel-track">
+                    <div class="carousel-card">
+                        <!-- AI Strategy & Roadmapping -->
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#1D8A73"/><path d="M16 8v8M8 8v8M12 8v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                        <h3>AI Strategy &amp; Roadmapping</h3>
+                        <p>Develop an actionable AI plan tailored to your business goals and resources.</p>
+                    </div>
+                    <div class="carousel-card">
+                        <!-- Automation Audits -->
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" fill="#1D8A73"/><path d="M8 12h8M8 16h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                        <h3>Automation Audits</h3>
+                        <p>Discover opportunities to automate workflows and increase efficiency.</p>
+                    </div>
+                    <div class="carousel-card">
+                        <!-- Tool Setup & Audit -->
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="#1D8A73"/><path d="M8 8h8v8H8V8z" stroke="#fff" stroke-width="2"/></svg>
+                        <h3>Tool Setup &amp; Audit</h3>
+                        <p>Get expert guidance on choosing and deploying the right AI tools.</p>
+                    </div>
+                    <div class="carousel-card">
+                        <!-- Ethical AI Consulting -->
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#1D8A73"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h3>Ethical AI Consulting</h3>
+                        <p>Ensure your AI solutions are transparent, fair, and compliant.</p>
+                    </div>
+                    <div class="carousel-card">
+                        <!-- 1:1 Coaching -->
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="#1D8A73"/><rect x="6" y="14" width="12" height="6" rx="3" fill="#1D8A73"/><path d="M12 12v2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                        <h3>1:1 Coaching</h3>
+                        <p>Personalized coaching to help you and your team master AI adoption.</p>
+                    </div>
                 </div>
-                <div class="icon-card">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5A3.5 3.5 0 1112 8a3.5 3.5 0 010 7.5zm8.94-2.5l1.82-1.05-1-1.73-1.83 1.06a7.8 7.8 0 00-1.57-.9l-.28-2.04h-2l-.28 2.04c-.56.23-1.09.53-1.57.9l-1.83-1.06-1 1.73 1.82 1.05c-.02.24-.02.49-.02.75s0 .51.02.75l-1.82 1.05 1 1.73 1.83-1.06c.48.37 1.01.67 1.57.9l.28 2.04h2l.28-2.04c.56-.23 1.09-.53 1.57-.9l1.83 1.06 1-1.73-1.82-1.05c.02-.24.02-.49.02-.75s0-.51-.02-.75z"/></svg>
-                    <p>Automation Audits</p>
-                </div>
-                <div class="icon-card">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v2H3V3zm2 4h2v14H5V7zm4 4h2v10H9V11zm4-6h2v16h-2V5zm4 8h2v8h-2v-8z"/></svg>
-                    <p>Tool Setup &amp; Audit</p>
-                </div>
-                <div class="icon-card">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a1 1 0 011 1v1h4.5a1 1 0 110 2h-.42l2.46 5.09A3.5 3.5 0 0118.15 18H5.85a3.5 3.5 0 01-3.39-4.91L4.92 6H4.5a1 1 0 110-2H9V3a1 1 0 112 0v1z"/></svg>
-                    <p>Ethical AI Consulting</p>
-                </div>
-                <div class="icon-card">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a5 5 0 10-9.9 1H6a4 4 0 100 8h7v-2H6a2 2 0 110-4h6.1a5.001 5.001 0 009.9-3zM8 13a1 1 0 110-2 1 1 0 010 2z"/></svg>
-                    <p>1:1 Coaching</p>
-                </div>
+                <button class="carousel-btn right" aria-label="Scroll right">&#8594;</button>
             </div>
         </section>
 
@@ -422,6 +486,22 @@
                 e.preventDefault();
                 document.getElementById('nav-toggle').checked = !document.getElementById('nav-toggle').checked;
             }
+        });
+
+        // Carousel functionality
+        document.querySelectorAll('.carousel-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const track = document.querySelector('.carousel-track');
+            const card = track.querySelector('.carousel-card');
+            const gap = parseInt(getComputedStyle(track).gap) || 32;
+            const scrollAmount = card.offsetWidth + gap;
+
+            if (btn.classList.contains('left')) {
+              track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+              track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+          });
         });
 
         // Client-side form validation and submission feedback
